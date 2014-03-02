@@ -63,7 +63,8 @@ printf "\n" | pecl install memcache
 printf "\n" | pecl install memcached
 echo "extension=memcache.so" >> /etc/php.ini
 echo "extension=memcached.so" >> /etc/php.ini
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 11211 -j ACCEPT
+iptables -I INPUT -s 127.0.0.1 -p tcp --dport 11211 -j ACCEPT
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 service iptables save
 chkconfig memcached on
 service memcached start
