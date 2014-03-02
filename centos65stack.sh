@@ -57,3 +57,14 @@ chkconfig httpd on
 chkconfig mysqld on
 service httpd restart
 service mysqld restart
+yum -y groupinstall 'Development Tools'
+yum -y install memcached memcached-devel libmemcached libmemcached-devel zlib zlib-devel php-devel
+printf "\n" | pecl install memcache
+printf "\n" | pecl install memcached
+echo "extension=memcache.so" >> /etc/php.ini
+echo "extension=memcached.so" >> /etc/php.ini
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 11211 -j ACCEPT
+service iptables save
+chkconfig memcached on
+service memcached start
+service httpd restart
