@@ -5,7 +5,7 @@ cd /etc/yum.repos.d
 wget http://download.openvz.org/openvz.repo
 rpm --import http://download.openvz.org/RPM-GPG-Key-OpenVZ
 yum install -y vzkernel.x86_64
-yum install -y vzctl vzquota
+yum install -y vzctl vzquota ploop
 sed -i 's/kernel.sysrq = 0/kernel.sysrq = 1/g' /etc/sysctl.conf
 sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf
 echo 'net.ipv4.conf.default.proxy_arp = 0' >> /etc/sysctl.conf
