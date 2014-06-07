@@ -23,4 +23,7 @@ wget http://download.openvz.org/template/precreated/centos-6-x86_64.tar.gz
 yum install -y ntp
 ntpdate -u us.pool.ntp.org
 chkconfig ntpd on
-iptables -D FORWARD 1
+iptables -F FORWARD
+iptables -F INPUT
+iptables -F OUTPUT
+/etc/init.d/iptables save
