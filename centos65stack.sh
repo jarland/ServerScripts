@@ -16,7 +16,6 @@ DOMAIN="domain.tld"
 
 yum -y update
 rpm -ivh http://epel.mirror.constant.com/6/i386/epel-release-6-8.noarch.rpm
-rpm -ivh http://www6.atomicorp.com/channels/atomic/centos/6/i386/RPMS/atomic-release-1.0-16.el6.art.noarch.rpm
 yum -y install httpd mysql-server php php-pear php-xml php-mysql httpd-itk at wget php-gd php-mbstring
 rpm -ivh https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_x86_64.rpm
 service httpd restart
@@ -30,7 +29,7 @@ mysql -e "SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('$SQLPASS');"
 mysql -e "SET PASSWORD FOR 'root'@'::1' = PASSWORD('$SQLPASS');"
 mysql -e "FLUSH PRIVILEGES;"
 mysqladmin -u root password "$SQLPASS"
-sed -i 's/error\_reporting\ \=/#error\_reporting\ \=/g' php.ini
+sed -i 's/error\_reporting\ \=/#error\_reporting\ \=/g' /etc/php.ini
 echo "error_reporting = E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR" >> /etc/php.ini
 echo "error_log = /var/log/php.log" >> /etc/php.ini
 sed -i 's/max\_execution\_time\ \=\ 30/max\_execution\_time\ \=\ 300/g' /etc/php.ini
