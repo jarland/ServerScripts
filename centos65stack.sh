@@ -2,6 +2,32 @@
 #
 # CentOS 6.5 x86_64 LAMP Stack
 
+## Root?
+############
+if [ "x$(id -u)" != 'x0' ]; then
+    echo ‘You must be root to run this script.’
+    exit 1
+fi
+############
+
+## CentOS?
+############
+if [ -e '/etc/redhat-release' ]
+
+then
+
+    echo “CentOS Detected.”
+
+else
+
+    echo “This script requires CentOS 6.”
+    exit 1
+
+fi
+############
+
+## Define variables from user input.
+############
 echo "Input the username for your virtual host (will be /home/username)";
 echo -n "User: "
 read USER;
@@ -29,6 +55,7 @@ echo " ";
 echo "Enter the domain name you want to set up, do not include wwww.";
 echo -n "Domain: ";
 read DOMAIN;
+############
 
 yum -y update
 rpm -ivh http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm
