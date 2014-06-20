@@ -111,6 +111,7 @@ echo "AssignUserId $USER $USER" >> /etc/httpd/conf.d/vhosts.conf
 echo "</VirtualHost>" >> /etc/httpd/conf.d/vhosts.conf
 sed -i 's/#HTTPD/HTTPD/g' /etc/sysconfig/httpd
 sed -i 's/.worker/.itk/g' /etc/sysconfig/httpd
+sed -i 's/AllowOverride None/AllowOverride All/g' /etc/httpd/conf/httpd.conf
 echo "[client]" >> /root/.my.cnf
 echo "user=root" >> /root/.my.cnf
 echo "password=$SQLPASS" >> /root/.my.cnf
