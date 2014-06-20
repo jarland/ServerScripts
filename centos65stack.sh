@@ -16,7 +16,7 @@ if [ -e '/etc/redhat-release' ]
 
 then
 
-    echo “CentOS Detected.”
+    echo “ ”
 
 else
 
@@ -43,12 +43,6 @@ echo " ";
 echo "Enter the desired MySQL root password.";
 echo -n "Password: ";
 read SQLPASS;
-
-echo " ";
-
-echo "Enter the e-mail address that will be linked to your virtual host.";
-echo -n "E-mail Address: ";
-read ADMIN;
 
 echo " ";
 
@@ -88,7 +82,6 @@ chown -R $USER. /home/$USER
 touch /etc/httpd/conf.d/vhosts.conf
 echo "NameVirtualHost *:80" >> /etc/httpd/conf.d/vhosts.conf
 echo "<VirtualHost *:80>" >> /etc/httpd/conf.d/vhosts.conf
-echo "ServerAdmin $ADMIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "ServerName $DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "ServerAlias www.$DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "DocumentRoot /home/$USER/$DOMAIN/public_html/" >> /etc/httpd/conf.d/vhosts.conf
