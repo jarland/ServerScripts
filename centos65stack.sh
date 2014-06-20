@@ -5,7 +5,7 @@
 ## Root?
 ############
 if [ "x$(id -u)" != 'x0' ]; then
-    echo ‘You must be root to run this script.’
+    echo "You must be root to run this script."
     exit 1
 fi
 ############
@@ -16,11 +16,11 @@ if [ -e '/etc/redhat-release' ]
 
 then
 
-    echo “ ”
+    echo " "
 
 else
 
-    echo “This script requires CentOS 6.”
+    echo "This script requires CentOS 6."
     exit 1
 
 fi
@@ -111,9 +111,9 @@ echo "AssignUserId $USER $USER" >> /etc/httpd/conf.d/vhosts.conf
 echo "</VirtualHost>" >> /etc/httpd/conf.d/vhosts.conf
 sed -i 's/#HTTPD/HTTPD/g' /etc/sysconfig/httpd
 sed -i 's/.worker/.itk/g' /etc/sysconfig/httpd
-echo “[Client]” >> /root/.my.cnf
-echo “User=root” >> /root/.my.cnf
-echo “Password=$SQLPASS” >> /root/.my.cnf
+echo "[Client]" >> /root/.my.cnf
+echo "User=root" >> /root/.my.cnf
+echo "Password=$SQLPASS" >> /root/.my.cnf
 chkconfig httpd on
 chkconfig mysqld on
 chkconfig varnish on
