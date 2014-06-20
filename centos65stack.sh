@@ -57,6 +57,7 @@ yum -y install httpd mysql-server php php-pear php-xml php-mysql httpd-itk at wg
 rpm -ivh https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_x86_64.rpm
 
 sed -i 's/VARNISH_LISTEN_PORT=6081/VARNISH_LISTEN_PORT=80/g' /etc/sysconfig/varnish
+sed -i 's/80/8080/g' /etc/varnish/default.vcl
 sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
 
 service httpd restart
@@ -110,6 +111,9 @@ echo "AssignUserId $USER $USER" >> /etc/httpd/conf.d/vhosts.conf
 echo "</VirtualHost>" >> /etc/httpd/conf.d/vhosts.conf
 sed -i 's/#HTTPD/HTTPD/g' /etc/sysconfig/httpd
 sed -i 's/.worker/.itk/g' /etc/sysconfig/httpd
+echo “[Client]” >> /root/.my.cnf
+echo “User=root” >> /root/.my.cnf
+echo “Password=$SQLPASS” >> /root/.my.cnf
 chkconfig httpd on
 chkconfig mysqld on
 chkconfig varnish on
