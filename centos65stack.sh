@@ -67,12 +67,12 @@ mysqladmin -u root password "$SQLPASS"
 ## Secure MySQL
 ############
 SECURE_MYSQL=$(expect -c "
-set timeout 10
+set timeout 5
 spawn mysql_secure_installation
 expect \"Enter current password for root (enter for none):\"
-send \”$SQLPASS\r\”
+send \"$SQLPASS\r\"
 expect \"Change the root password?\"
-send \”n\r\”
+send \"n\r\"
 expect \"Remove anonymous users?\"
 send \"y\r\"
 expect \"Disallow root login remotely?\"
