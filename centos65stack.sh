@@ -1,18 +1,34 @@
 #!/bin/bash
 #
 # CentOS 6.5 x86_64 LAMP Stack
-# Set your MySQL root password below
-SQLPASS="pass"
 
-# Set the user/pass that the script will make for your first virtual host.
-USER="user"
-PASS="pass"
+echo "Input the username for your virtual host (will be /home/username)";
+echo -n "User: "
+read USER;
 
-# Your e-mail address
-ADMIN="user@domain.tld"
+echo " ";
 
-# The first virtual host added, domain without www
-DOMAIN="domain.tld"
+echo "Input the password you want to set for the username.";
+echo -n "Password: ";
+read PASS;
+
+echo " ";
+
+echo "Enter the desired MySQL root password.";
+echo -n "Password: ";
+read SQLPASS;
+
+echo " ";
+
+echo "Enter the e-mail address that will be linked to your virtual host.";
+echo -n "E-mail Address: ";
+read ADMIN;
+
+echo " ";
+
+echo "Enter the domain name you want to set up, do not include wwww.";
+echo -n "Domain: ";
+read DOMAIN;
 
 yum -y update
 rpm -ivh http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm
