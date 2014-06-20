@@ -75,3 +75,6 @@ chkconfig httpd on
 chkconfig mysqld on
 service httpd restart
 service mysqld restart
+clear
+echo "Installation complete. The content for $DOMAIN will be hosted in"
+echo "/home/$USER/$DOMAIN/public_html."
