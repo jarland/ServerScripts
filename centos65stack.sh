@@ -100,7 +100,7 @@ echo "$PASS" | passwd "$USER" --stdin
 mkdir -p /home/$USER/$DOMAIN/{public_html,logs}
 chown -R $USER. /home/$USER
 touch /etc/httpd/conf.d/vhosts.conf
-echo "NameVirtualHost *:8080” >> /etc/httpd/conf.d/vhosts.conf
+echo "NameVirtualHost *:8080" >> /etc/httpd/conf.d/vhosts.conf
 echo "<VirtualHost *:8080>" >> /etc/httpd/conf.d/vhosts.conf
 echo "ServerName $DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "ServerAlias www.$DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
