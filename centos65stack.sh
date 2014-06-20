@@ -107,6 +107,21 @@ echo "DocumentRoot /home/$USER/$DOMAIN/public_html/" >> /etc/httpd/conf.d/vhosts
 echo "ErrorLog /home/$USER/$DOMAIN/logs/error.log" >> /etc/httpd/conf.d/vhosts.conf
 echo "CustomLog /home/$USER/$DOMAIN/logs/access.log combined" >> /etc/httpd/conf.d/vhosts.conf
 echo "AssignUserId $USER $USER" >> /etc/httpd/conf.d/vhosts.conf
+echo "<Directory /home/$USER/$DOMAIN/public_html/>" >> /etc/httpd/conf.d/vhosts.conf
+echo "<IfModule mod_mime.c>" >> /etc/httpd/conf.d/vhosts.conf
+echo "AddType application/x-javascript .js" >> /etc/httpd/conf.d/vhosts.conf
+echo "AddType text/css .css" >> /etc/httpd/conf.d/vhosts.conf
+echo "</IfModule>" >> /etc/httpd/conf.d/vhosts.conf
+echo "<IfModule mod_deflate.c>" >> /etc/httpd/conf.d/vhosts.conf
+echo "AddOutputFilterByType DEFLATE text/css application/x-javascript text/x-component text/html text/plain text/xml application/javascript" >> /etc/httpd/conf.d/vhosts.conf
+echo "<IfModule mod_setenvif.c>" >> /etc/httpd/conf.d/vhosts.conf
+echo "BrowserMatch ^Mozilla/4 gzip-only-text/html" >> /etc/httpd/conf.d/vhosts.conf
+echo "BrowserMatch ^Mozilla/4\.0[678] no-gzip" >> /etc/httpd/conf.d/vhosts.conf
+echo "BrowserMatch \bMSIE !no-gzip !gzip-only-text/html" >> /etc/httpd/conf.d/vhosts.conf
+echo "</IfModule>" >> /etc/httpd/conf.d/vhosts.conf
+echo "</IfModule>" >> /etc/httpd/conf.d/vhosts.conf
+echo "Header append Vary User-Agent env=!dont-vary" >> /etc/httpd/conf.d/vhosts.conf
+echo "</Directory>" >> /etc/httpd/conf.d/vhosts.conf
 echo "</VirtualHost>" >> /etc/httpd/conf.d/vhosts.conf
 sed -i 's/#HTTPD/HTTPD/g' /etc/sysconfig/httpd
 sed -i 's/.worker/.itk/g' /etc/sysconfig/httpd
