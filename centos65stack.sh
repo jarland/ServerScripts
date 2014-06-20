@@ -105,7 +105,7 @@ echo "ServerName $DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "ServerAlias www.$DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "DocumentRoot /home/$USER/$DOMAIN/public_html/" >> /etc/httpd/conf.d/vhosts.conf
 echo "ErrorLog /home/$USER/$DOMAIN/logs/error.log" >> /etc/httpd/conf.d/vhosts.conf
-echo "CustomLog /home/$USER/$DOMAIN/logs/access.log combined" >> /etc/httpd/conf.d/vhosts.conf
+echo "CustomLog /home/$USER/$DOMAIN/logs/access.log varnishcombined" >> /etc/httpd/conf.d/vhosts.conf
 echo "AssignUserId $USER $USER" >> /etc/httpd/conf.d/vhosts.conf
 echo "<Directory /home/$USER/$DOMAIN/public_html/>" >> /etc/httpd/conf.d/vhosts.conf
 echo "<IfModule mod_mime.c>" >> /etc/httpd/conf.d/vhosts.conf
@@ -126,6 +126,14 @@ echo "</VirtualHost>" >> /etc/httpd/conf.d/vhosts.conf
 sed -i 's/#HTTPD/HTTPD/g' /etc/sysconfig/httpd
 sed -i 's/.worker/.itk/g' /etc/sysconfig/httpd
 sed -i 's/AllowOverride None/AllowOverride All/g' /etc/httpd/conf/httpd.conf
+
+echo "sub vcl_recv {" >> /etc/varnish/default.vcl
+echo "# Add a unique header containing the client address" >> /etc/varnish/default.vcl
+echo "remove req.http.X-Forwarded-For;" >> /etc/varnish/default.vcl
+echo "set    req.http.X-Forwarded-For = client.ip;" >> /etc/varnish/default.vcl
+echo "}" >> /etc/varnish/default.vcl
+
+echo "LogFormat \"%{X-Forwarded-For}i %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"\" varnishcombined" >> /etc/httpd/conf/httpd.conf
 echo "[client]" >> /root/.my.cnf
 echo "user=root" >> /root/.my.cnf
 echo "password=$SQLPASS" >> /root/.my.cnf
