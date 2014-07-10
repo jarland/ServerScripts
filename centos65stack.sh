@@ -105,7 +105,7 @@ echo "ServerName $DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "ServerAlias www.$DOMAIN" >> /etc/httpd/conf.d/vhosts.conf
 echo "DocumentRoot /home/$USER/$DOMAIN/public_html/" >> /etc/httpd/conf.d/vhosts.conf
 echo "ErrorLog /home/$USER/$DOMAIN/logs/error.log" >> /etc/httpd/conf.d/vhosts.conf
-echo "CustomLog /home/$USER/$DOMAIN/logs/access.log" >> /etc/httpd/conf.d/vhosts.conf
+echo "CustomLog /home/$USER/$DOMAIN/logs/access.log combined" >> /etc/httpd/conf.d/vhosts.conf
 # To be fixed.
 #echo "CustomLog /home/$USER/$DOMAIN/logs/access.log varnishcombined" >> /etc/httpd/conf.d/vhosts.conf
 echo "AssignUserId $USER $USER" >> /etc/httpd/conf.d/vhosts.conf
