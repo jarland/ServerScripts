@@ -132,8 +132,8 @@ echo "# Add a unique header containing the client address" >> /etc/varnish/defau
 echo "remove req.http.X-Forwarded-For;" >> /etc/varnish/default.vcl
 echo "set    req.http.X-Forwarded-For = client.ip;" >> /etc/varnish/default.vcl
 echo "}" >> /etc/varnish/default.vcl
-
-echo "LogFormat \"%{X-Forwarded-For}i %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"\" varnishcombined" >> /etc/httpd/conf/httpd.conf
+# Needs to be fixed
+#echo "LogFormat \"%{X-Forwarded-For}i %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"\" varnishcombined" >> /etc/httpd/conf/httpd.conf
 echo "[client]" >> /root/.my.cnf
 echo "user=root" >> /root/.my.cnf
 echo "password=$SQLPASS" >> /root/.my.cnf
