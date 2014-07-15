@@ -19,5 +19,5 @@ echo "Disk Size: "
 read disk
 
 vzctl create $ctid --ostemplate $os
-vzctl set $ctid --ipadd $ip --physpages $mem:$mem --diskspace $disk:$disk --nameserver 2001:470:20::2 --nameserver 8.8.8.8 --hostname $hn --save
+vzctl set $ctid --ipadd $ip --physpages $mem:$mem --diskspace $disk:$disk --nameserver 8.8.4.4 --nameserver 8.8.8.8 --hostname $hn --save
 vzctl start $ctid
