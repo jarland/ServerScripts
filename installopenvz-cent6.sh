@@ -4,8 +4,7 @@ yum install -y wget
 cd /etc/yum.repos.d
 wget http://download.openvz.org/openvz.repo
 rpm --import http://download.openvz.org/RPM-GPG-Key-OpenVZ
-yum install -y vzkernel.x86_64
-yum install -y vzctl vzquota ploop
+yum install -y vzkernel.x86_64 vzctl vzquota ploop ntp
 sed -i 's/kernel.sysrq = 0/kernel.sysrq = 1/g' /etc/sysctl.conf
 sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf
 echo 'net.ipv4.conf.default.proxy_arp = 0' >> /etc/sysctl.conf
@@ -20,7 +19,7 @@ sed -i 's/SELINUX=enabled/SELINUX=disabled/g' /etc/sysconfig/selinux
 sed -i 's/1/0/g' /etc/modprobe.d/openvz.conf
 cd /vz/template/cache
 wget http://download.openvz.org/template/precreated/centos-6-x86_64.tar.gz
-yum install -y ntp
+wget http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64.tar.gz
 ntpdate -u us.pool.ntp.org
 chkconfig ntpd on
 iptables -F FORWARD
