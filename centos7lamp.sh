@@ -35,14 +35,17 @@ read SQLPASS;
 
 ############
 
-yum install -y httpd mariadb-server mariadb at expect php php-mysql php-pear php-xml php-gd php-mbstring
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+yum --enablerepo=remi,remi-php56 install httpd php php-common -y
+yum --enablerepo=remi,remi-php56 install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-gd php-mbstring php-mcrypt php-xml -y
+#yum install -y httpd mariadb-server mariadb at expect php php-mysql php-pear php-xml php-gd php-mbstring
 
 sed -i 's/LoadModule\ mpm_prefork_module/#LoadModule\ mpm_prefork_module/g' /etc/httpd/conf.modules.d/00-mpm.conf
 sed -i 's/#LoadModule\ mpm_event_module/LoadModule\ mpm_event_module/g' /etc/httpd/conf.modules.d/00-mpm.conf
 sed -i 's/php_value/#php_value/g' /etc/httpd/conf.d/php.conf
 
-systemctl enable httpd.service
-systemctl enable mariadb.service
+systemctl enable httpd
+systemctl enable mariadb
 systemctl start mariadb
 systemctl start httpd
 
@@ -75,7 +78,7 @@ echo "user=root" >> /root/.my.cnf
 echo "password=$SQLPASS" >> /root/.my.cnf
 
 firewall-cmd --permanent --zone=public --add-port=80/tcp
-systemctl restart firewalld.service
+systemctl restart firewalld
 
 clear
 echo "Done. Your files are to be hosted from /var/www/html."
