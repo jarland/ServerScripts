@@ -43,6 +43,7 @@ RewriteCond %{HTTP_USER_AGENT} Owlin [OR]
 RewriteCond %{HTTP_USER_AGENT} package [OR]
 RewriteCond %{HTTP_USER_AGENT} YahooCacheSystem [OR]
 RewriteCond %{HTTP_USER_AGENT} YandexNews [OR]
+RewriteCond %{HTTP_USER_AGENT} WinInet [OR]
 RewriteCond %{HTTP_USER_AGENT} CrawlDaddy
 RewriteRule .* - [R=416,L]
 ########
