@@ -46,6 +46,9 @@ RewriteCond %{HTTP_USER_AGENT} YandexNews [OR]
 RewriteCond %{HTTP_USER_AGENT} WinInet [OR]
 RewriteCond %{HTTP_USER_AGENT} Goibot [OR]
 RewriteCond %{HTTP_USER_AGENT} aranhabot [OR]
+RewriteCond %{HTTP_USER_AGENT} 360Spider [OR]
+RewriteCond %{HTTP_USER_AGENT} magpie-crawler [OR]
+RewriteCond %{HTTP_USER_AGENT} package [OR]
 RewriteCond %{HTTP_USER_AGENT} CrawlDaddy
 RewriteRule .* - [R=416,L]
 ########
