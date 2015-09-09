@@ -21,5 +21,5 @@ ntpdate -u us.pool.ntp.org
 chkconfig ntpd on
 iptables -F FORWARD
 /etc/init.d/iptables save
-vztmpl-dl --update-all
-echo "Finished installing. Reboot and you'll be ready to go!"
+for i in $(vztmpl-dl --list-all); do vztmpl-dl $i; done
+echo -e "\n\nFinished installing. Reboot and you'll be ready to go!\n"
