@@ -22,4 +22,4 @@ chkconfig ntpd on
 iptables -F FORWARD
 /etc/init.d/iptables save
 for i in $(vztmpl-dl --list-all); do vztmpl-dl $i; done
-echo -e "\n\nFinished installing. Reboot and you'll be ready to go!\n"
+echo -e "\n\nFinished installing. Reboot and you'll be ready to go! \n"
