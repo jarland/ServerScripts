@@ -2,6 +2,8 @@
 #
 # CentOS 7 x86_64 LAMP Stack
 
+# This recipe is guaranteed to run you OOM in 12-24 hours. Maybe don't use it.
+
 ## Root?
 ############
 if [ "x$(id -u)" != 'x0' ]; then
