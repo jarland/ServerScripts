@@ -17,12 +17,9 @@ sysctl -p
 sed -i 's/NEIGHBOUR_DEVS=detect/NEIGHBOUR_DEVS=all/g' /etc/vz/vz.conf
 sed -i 's/SELINUX=enabled/SELINUX=disabled/g' /etc/sysconfig/selinux
 sed -i 's/1/0/g' /etc/modprobe.d/openvz.conf
-cd /vz/template/cache
-wget http://download.openvz.org/template/precreated/centos-6-x86_64.tar.gz
-wget http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64.tar.gz
 ntpdate -u us.pool.ntp.org
 chkconfig ntpd on
 iptables -F FORWARD
-iptables -F INPUT
-iptables -F OUTPUT
 /etc/init.d/iptables save
+vztmpl-dl --update-all
+echo "Finished installing. Reboot and you'll be ready to go!"
