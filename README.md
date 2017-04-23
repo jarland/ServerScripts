@@ -17,3 +17,6 @@ A very flawed LAMP config for CentOS 7. Apache 2.4 and PHP 5.6. This would be be
 
 $ block_user_agents<br>
 This consists of bots that ignore robots.txt and user agents that frequently probed for script vulnerabilities. This is no longer maintained and will not be updated.
+
+$ b2_client_install.sh<br>
+Installs Backblaze B2 client on CentOS 6/7
