@@ -20,3 +20,6 @@ This consists of bots that ignore robots.txt and user agents that frequently pro
 
 $ b2_client_install.sh<br>
 Installs Backblaze B2 client on CentOS 6/7
+
+$ heloblocks<br>
+List of connections blocked by HELO statement on MXroute servers due to excessive spam
